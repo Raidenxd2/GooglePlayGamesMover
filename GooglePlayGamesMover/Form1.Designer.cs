@@ -39,6 +39,7 @@
             this.statusText = new System.Windows.Forms.Label();
             this.browseBTN = new System.Windows.Forms.Button();
             this.openFD = new System.Windows.Forms.FolderBrowserDialog();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // startBTN
@@ -133,12 +134,22 @@
             // 
             this.openFD.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(715, 399);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "v1.0.1-release";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.browseBTN);
             this.Controls.Add(this.statusText);
             this.Controls.Add(this.moveUDt);
@@ -173,6 +184,7 @@
         private System.Windows.Forms.Label statusText;
         private System.Windows.Forms.Button browseBTN;
         private System.Windows.Forms.FolderBrowserDialog openFD;
+        private System.Windows.Forms.Label label3;
     }
 }
 
