@@ -167,7 +167,7 @@ namespace GooglePlayGamesMover
         {
             if (openFD.ShowDialog() == DialogResult.OK)
             {
-                toTB.Text = Path.GetFullPath(openFD.SelectedPath);
+                toTB.Text = Path.GetFullPath(openFD.SelectedPath + "\\");
             }
 
         }
