@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
 using System.Security.Principal;
 
 namespace GooglePlayGamesMover
@@ -25,6 +18,7 @@ namespace GooglePlayGamesMover
         public Form1()
         {
             InitializeComponent();
+            versionText.Text = "v" + ProductVersion;
             using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
             {
                 WindowsPrincipal principal = new WindowsPrincipal(identity);
@@ -169,11 +163,6 @@ namespace GooglePlayGamesMover
             {
                 toTB.Text = Path.GetFullPath(openFD.SelectedPath + "\\");
             }
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
         }
     }

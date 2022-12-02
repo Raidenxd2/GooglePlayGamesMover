@@ -39,7 +39,7 @@
             this.statusText = new System.Windows.Forms.Label();
             this.browseBTN = new System.Windows.Forms.Button();
             this.openFD = new System.Windows.Forms.FolderBrowserDialog();
-            this.label3 = new System.Windows.Forms.Label();
+            this.versionText = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // startBTN
@@ -134,14 +134,15 @@
             // 
             this.openFD.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
-            // label3
+            // versionText
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(715, 399);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "v1.0.1-release";
+            this.versionText.AutoSize = true;
+            this.versionText.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.versionText.Location = new System.Drawing.Point(752, 399);
+            this.versionText.Name = "versionText";
+            this.versionText.Size = new System.Drawing.Size(36, 13);
+            this.versionText.TabIndex = 11;
+            this.versionText.Text = "v1.0.1";
             // 
             // Form1
             // 
@@ -149,7 +150,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.versionText);
             this.Controls.Add(this.browseBTN);
             this.Controls.Add(this.statusText);
             this.Controls.Add(this.moveUDt);
@@ -166,7 +167,6 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Google Play Games Mover";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,7 +184,7 @@
         private System.Windows.Forms.Label statusText;
         private System.Windows.Forms.Button browseBTN;
         private System.Windows.Forms.FolderBrowserDialog openFD;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label versionText;
     }
 }
 
