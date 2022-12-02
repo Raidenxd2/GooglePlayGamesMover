@@ -28,33 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.startBTN = new System.Windows.Forms.Button();
+            this.fromTB = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button2 = new System.Windows.Forms.Button();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.optionsBTN = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.toTB = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // startBTN
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 415);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
+            this.startBTN.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startBTN.Location = new System.Drawing.Point(12, 415);
+            this.startBTN.Name = "startBTN";
+            this.startBTN.Size = new System.Drawing.Size(75, 23);
+            this.startBTN.TabIndex = 0;
+            this.startBTN.Text = "Start";
+            this.startBTN.UseVisualStyleBackColor = true;
+            this.startBTN.Click += new System.EventHandler(this.startBTN_Click);
             // 
-            // textBox1
+            // fromTB
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(12, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(776, 22);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "C:\\Program Files\\Google\\Play Games\\";
+            this.fromTB.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fromTB.Location = new System.Drawing.Point(12, 24);
+            this.fromTB.Name = "fromTB";
+            this.fromTB.Size = new System.Drawing.Size(776, 22);
+            this.fromTB.TabIndex = 1;
+            this.fromTB.Text = "C:\\Program Files\\Google\\Play Games\\";
             // 
             // label1
             // 
@@ -66,22 +67,23 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "From";
             // 
-            // progressBar1
+            // progressBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(93, 415);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(614, 23);
-            this.progressBar1.TabIndex = 3;
+            this.progressBar.Location = new System.Drawing.Point(93, 415);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(614, 23);
+            this.progressBar.TabIndex = 3;
             // 
-            // button2
+            // optionsBTN
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(713, 415);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Options";
-            this.button2.UseVisualStyleBackColor = true;
+            this.optionsBTN.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optionsBTN.Location = new System.Drawing.Point(713, 415);
+            this.optionsBTN.Name = "optionsBTN";
+            this.optionsBTN.Size = new System.Drawing.Size(75, 23);
+            this.optionsBTN.TabIndex = 4;
+            this.optionsBTN.Text = "Options";
+            this.optionsBTN.UseVisualStyleBackColor = true;
+            this.optionsBTN.Click += new System.EventHandler(this.button2_Click);
             // 
             // label2
             // 
@@ -92,15 +94,14 @@
             this.label2.Size = new System.Drawing.Size(19, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "To";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox2
+            // toTB
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 65);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(776, 22);
-            this.textBox2.TabIndex = 6;
-            this.textBox2.Text = "D:\\Play Games\\";
+            this.toTB.Location = new System.Drawing.Point(12, 65);
+            this.toTB.Name = "toTB";
+            this.toTB.Size = new System.Drawing.Size(776, 22);
+            this.toTB.TabIndex = 6;
+            this.toTB.Text = "D:\\Play Games\\";
             // 
             // Form1
             // 
@@ -108,13 +109,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.toTB);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.optionsBTN);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.fromTB);
+            this.Controls.Add(this.startBTN);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -128,13 +129,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button startBTN;
+        private System.Windows.Forms.TextBox fromTB;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Button optionsBTN;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox toTB;
     }
 }
 
