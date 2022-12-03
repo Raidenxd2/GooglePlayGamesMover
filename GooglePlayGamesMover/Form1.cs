@@ -58,7 +58,7 @@ namespace GooglePlayGamesMover
                 catch (IOException ex)
                 {
                     statusText.Text = "Error!";
-                    MessageBox.Show("Error! " + ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             if (!createLI)
@@ -74,7 +74,7 @@ namespace GooglePlayGamesMover
                 catch (Exception ex)
                 {
                     statusText.Text = "Error!";
-                    MessageBox.Show("Error! " + ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             if (moveUD)
@@ -93,7 +93,7 @@ namespace GooglePlayGamesMover
                 catch (Exception ex)
                 {
                     statusText.Text = "Error!";
-                    MessageBox.Show("Error! " + ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
