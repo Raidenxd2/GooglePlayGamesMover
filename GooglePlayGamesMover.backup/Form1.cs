@@ -20,6 +20,7 @@ namespace GooglePlayGamesMover
         {
             InitializeComponent();
             versionText.Text = "v" + ProductVersion;
+            //Application.SetDefaultFont(Font font);
             using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
             {
                 WindowsPrincipal principal = new WindowsPrincipal(identity);
