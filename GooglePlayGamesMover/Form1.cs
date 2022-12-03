@@ -153,7 +153,7 @@ namespace GooglePlayGamesMover
         {
             if (moveUDt.Checked)
             {
-                MessageBox.Show("WARNING! Enabling this option will DELETE all Android user data.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("WARNING! Enabling this option may DELETE all Android user data.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

@@ -1,0 +1,8 @@
+- name: Setup .NET Core SDK
+  uses: actions/setup-dotnet@v3.0.3
+  steps:
+- uses: actions/checkout@v3
+- uses: actions/setup-dotnet@v3
+  with:
+    dotnet-version: '4.7.x'
+- run: dotnet build <my project>
