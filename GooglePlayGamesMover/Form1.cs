@@ -7,6 +7,8 @@ using System.Security.Principal;
 using System.Drawing;
 using MaterialSkin.Controls;
 using MaterialSkin;
+using Microsoft.Win32;
+using System.Runtime.Versioning;
 
 namespace GooglePlayGamesMover
 {
@@ -27,24 +29,92 @@ namespace GooglePlayGamesMover
             int nHeightEllipse // height of ellipse
         );
 
+
+        RegistryKey key;
+
         bool isElevated;
         bool darkMode;
 
+        [SupportedOSPlatform("windows")]
         public Form1()
         {
             InitializeComponent();
-            versionText.Text = "v" + ProductVersion;
-            using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
-            {
-                WindowsPrincipal principal = new WindowsPrincipal(identity);
-                isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
-            }
-            Console.WriteLine("" + isElevated);
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.Green500, Accent.LightBlue200, TextShade.WHITE);
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
+            {
+                WindowsPrincipal principal = new WindowsPrincipal(identity);
+                isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
+            }
+            if (isElevated == false)
+            {
+                DialogResult dialogResult = MaterialMessageBox.Show("Not running as administrator do you want to continue anyway?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                if (dialogResult == DialogResult.No)
+                {
+                    this.Close();
+                    return;
+                }
+            }
+            try
+            {
+                key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\raiden\GooglePlayGamesMover");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " " + ex.Source + " " + ex.InnerException + " " + ex.StackTrace);
+                MaterialMessageBox.Show(ex.Message + " " + ex.Source + " " + ex.InnerException + " " + ex.StackTrace, "Could not create Registry value (Application data will not be saved).", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            versionText.Text = "v" + ProductVersion;
+            Console.WriteLine("" + isElevated);
+            try
+            {
+                if (key.GetValue("LaunchedApp").ToString() == null)
+                {
+                    // do nothing since this is just a detector of if it exists
+                }
+            }
+            catch
+            {
+                // create the key because it doesn't exist
+                Console.WriteLine("First time launching app");
+                key.SetValue("LaunchedApp", null);
+            }
+            try
+            {
+                if (key.GetValue("LaunchedApp").ToString() == null)
+                {
+                    key.SetValue("LaunchedApp", 1);
+                    key.SetValue("DarkMode", 1);
+                    toTB.Text = "D:\\Play Games\\";
+                }
+                else
+                {
+                    toTB.Text = key.GetValue("toTB").ToString();
+                    if (key.GetValue("DarkMode").ToString() == "True")
+                    {
+                        materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+                    }
+                    else
+                    {
+                        materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+                    }
+                }
+                if (key.GetValue("LastLaunchedVersion").ToString() != ProductVersion)
+                {
+                    WhatsNew whatsNew = new WhatsNew();
+                    whatsNew.Show();
+                    key.SetValue("LastLaunchedVersion", ProductVersion);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " " + ex.Source + " " + ex.InnerException + " " + ex.StackTrace);
+                MaterialMessageBox.Show(ex.Message + " " + ex.Source + " " + ex.InnerException + " " + ex.StackTrace, "Could not create Registry value (Application data will not be saved).", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            
         }
 
         private void StartMove(bool moveUD, bool createLI)
@@ -104,7 +174,7 @@ namespace GooglePlayGamesMover
 
         }
 
-        public void Move(string source, string target)
+        public new void Move(string source, string target)
         {
 
             if (!Directory.Exists(source))
@@ -184,6 +254,7 @@ namespace GooglePlayGamesMover
             }
         }
 
+        [SupportedOSPlatform("windows")]
         private void darkmodeSwitch_CheckedChanged(object sender, EventArgs e)
         {
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -195,6 +266,27 @@ namespace GooglePlayGamesMover
             else
             {
                 materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            }
+            try
+            {
+                key.SetValue("DarkMode", darkMode);
+            }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show(ex.Message + " " + ex.Source + " " + ex.InnerException + " " + ex.StackTrace, "Could not create Registry value (Application data will not be saved).", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
+
+        [SupportedOSPlatform("windows")]
+        private void toTB_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                key.SetValue("toTB", toTB.Text);
+            }
+            catch (Exception ex)
+            {
+                MaterialMessageBox.Show(ex.Message + " " + ex.Source + " " + ex.InnerException + " " + ex.StackTrace, "Could not create Registry value (Application data will not be saved).", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
     }

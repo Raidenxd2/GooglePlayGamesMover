@@ -158,6 +158,7 @@
             this.toTB.TabIndex = 18;
             this.toTB.Text = "D:\\Play Games\\";
             this.toTB.TrailingIcon = null;
+            this.toTB.TextChanged += new System.EventHandler(this.toTB_TextChanged);
             // 
             // materialLabel1
             // 
@@ -226,7 +227,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(696, 462);
+            this.ClientSize = new System.Drawing.Size(712, 501);
             this.Controls.Add(this.darkmodeSwitch);
             this.Controls.Add(this.browseBTN);
             this.Controls.Add(this.materialLabel2);
