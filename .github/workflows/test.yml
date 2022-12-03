@@ -12,10 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install .NET 7 SDK
         uses: actions/setup-dotnet@v3
         with:
@@ -30,6 +26,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: GooglePlayGamesMover-Windows
-          path: /GooglePlayGamesMover/bin/Release/net7.0-windows
+          path: /GooglePlayGamesMover/bin/Release/net7.0-windows/
         # Use always() to always run this step to publish test results when there are test failures
         if: ${{ always() }}
