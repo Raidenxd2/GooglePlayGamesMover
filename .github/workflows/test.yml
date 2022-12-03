@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet build --configuration Release --no-restore --os win-64
+        run: dotnet build --configuration Release --no-restore --runtime win-x64
       - name: Test with dotnet
         run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
       - name: Upload dotnet test results
