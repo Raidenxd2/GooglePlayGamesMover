@@ -55,12 +55,12 @@
             this.startBTN.Depth = 0;
             this.startBTN.HighEmphasis = true;
             this.startBTN.Icon = null;
-            this.startBTN.Location = new System.Drawing.Point(7, 603);
+            this.startBTN.Location = new System.Drawing.Point(7, 417);
             this.startBTN.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.startBTN.MouseState = MaterialSkin.MouseState.HOVER;
             this.startBTN.Name = "startBTN";
             this.startBTN.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.startBTN.Size = new System.Drawing.Size(884, 36);
+            this.startBTN.Size = new System.Drawing.Size(681, 36);
             this.startBTN.TabIndex = 12;
             this.startBTN.Text = "Start";
             this.startBTN.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -73,7 +73,7 @@
             this.versionText.AutoSize = true;
             this.versionText.Depth = 0;
             this.versionText.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.versionText.Location = new System.Drawing.Point(845, 578);
+            this.versionText.Location = new System.Drawing.Point(641, 392);
             this.versionText.MouseState = MaterialSkin.MouseState.HOVER;
             this.versionText.Name = "versionText";
             this.versionText.Size = new System.Drawing.Size(46, 19);
@@ -85,7 +85,7 @@
             this.statusText.AutoSize = true;
             this.statusText.Depth = 0;
             this.statusText.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.statusText.Location = new System.Drawing.Point(7, 578);
+            this.statusText.Location = new System.Drawing.Point(7, 392);
             this.statusText.MouseState = MaterialSkin.MouseState.HOVER;
             this.statusText.Name = "statusText";
             this.statusText.Size = new System.Drawing.Size(47, 19);
@@ -137,7 +137,7 @@
             this.fromTB.MouseState = MaterialSkin.MouseState.OUT;
             this.fromTB.Multiline = false;
             this.fromTB.Name = "fromTB";
-            this.fromTB.Size = new System.Drawing.Size(879, 50);
+            this.fromTB.Size = new System.Drawing.Size(680, 50);
             this.fromTB.TabIndex = 17;
             this.fromTB.Text = "C:\\Program Files\\Google\\Play Games\\";
             this.fromTB.TrailingIcon = null;
@@ -154,7 +154,7 @@
             this.toTB.MouseState = MaterialSkin.MouseState.OUT;
             this.toTB.Multiline = false;
             this.toTB.Name = "toTB";
-            this.toTB.Size = new System.Drawing.Size(831, 50);
+            this.toTB.Size = new System.Drawing.Size(632, 50);
             this.toTB.TabIndex = 18;
             this.toTB.Text = "D:\\Play Games\\";
             this.toTB.TrailingIcon = null;
@@ -191,7 +191,7 @@
             this.browseBTN.Depth = 0;
             this.browseBTN.HighEmphasis = true;
             this.browseBTN.Icon = null;
-            this.browseBTN.Location = new System.Drawing.Point(834, 190);
+            this.browseBTN.Location = new System.Drawing.Point(630, 190);
             this.browseBTN.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.browseBTN.MouseState = MaterialSkin.MouseState.HOVER;
             this.browseBTN.Name = "browseBTN";
@@ -209,7 +209,7 @@
             this.darkmodeSwitch.AutoSize = true;
             this.darkmodeSwitch.BackColor = System.Drawing.SystemColors.Control;
             this.darkmodeSwitch.Depth = 0;
-            this.darkmodeSwitch.Location = new System.Drawing.Point(760, 64);
+            this.darkmodeSwitch.Location = new System.Drawing.Point(558, 64);
             this.darkmodeSwitch.Margin = new System.Windows.Forms.Padding(0);
             this.darkmodeSwitch.MouseLocation = new System.Drawing.Point(-1, -1);
             this.darkmodeSwitch.MouseState = MaterialSkin.MouseState.HOVER;
@@ -226,7 +226,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(898, 648);
+            this.ClientSize = new System.Drawing.Size(696, 462);
             this.Controls.Add(this.darkmodeSwitch);
             this.Controls.Add(this.browseBTN);
             this.Controls.Add(this.materialLabel2);
