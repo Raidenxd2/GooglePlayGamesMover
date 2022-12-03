@@ -5,16 +5,30 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Drawing;
+using MaterialSkin.Controls;
+using MaterialSkin;
 
 namespace GooglePlayGamesMover
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MaterialForm
     {
 
         [DllImport("kernel32.dll")]
         static extern bool CreateSymbolicLink(string lpSymlinkFileName, string lpTargetFileName, int dwFlags);
 
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // width of ellipse
+            int nHeightEllipse // height of ellipse
+        );
+
         bool isElevated;
+        bool darkMode;
 
         public Form1()
         {
@@ -26,22 +40,11 @@ namespace GooglePlayGamesMover
                 isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
             }
             Console.WriteLine("" + isElevated);
-        }
-
-        private void startBTN_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Starting! \nMove User Data: " + moveUDt.Checked + "\nCreate Local Install: " + createLIt.Checked);
-            Console.WriteLine("\"" + Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\AppData\\Local\\Google\\Play Games\\\" " + "\"" + toTB.Text + "UserData\\\"");
-            Console.WriteLine(Application.StartupPath + "\\Junction64.exe");
-            if (isElevated)
-            {
-                StartMove(moveUDt.Checked, createLIt.Checked);
-            }
-            else
-            {
-                MessageBox.Show("Please run as administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.Green500, Accent.LightBlue200, TextShade.WHITE);
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
         private void StartMove(bool moveUD, bool createLI)
@@ -58,7 +61,7 @@ namespace GooglePlayGamesMover
                 catch (IOException ex)
                 {
                     statusText.Text = "Error!";
-                    MessageBox.Show(ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MaterialMessageBox.Show(ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             if (!createLI)
@@ -74,7 +77,7 @@ namespace GooglePlayGamesMover
                 catch (Exception ex)
                 {
                     statusText.Text = "Error!";
-                    MessageBox.Show(ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MaterialMessageBox.Show(ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             if (moveUD)
@@ -93,11 +96,11 @@ namespace GooglePlayGamesMover
                 catch (Exception ex)
                 {
                     statusText.Text = "Error!";
-                    MessageBox.Show(ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MaterialMessageBox.Show(ex.Message + " " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
-            MessageBox.Show("Done!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MaterialMessageBox.Show("Done!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
@@ -150,21 +153,49 @@ namespace GooglePlayGamesMover
             sourceInfo.Delete(true);
         }
 
-        private void moveUDt_CheckedChanged(object sender, EventArgs e)
+        private void startBTN_Click_1(object sender, EventArgs e)
         {
-            if (moveUDt.Checked)
+            Console.WriteLine("Starting! \nMove User Data: " + moveUDt.Checked + "\nCreate Local Install: " + createLIt.Checked);
+            Console.WriteLine("\"" + Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\AppData\\Local\\Google\\Play Games\\\" " + "\"" + toTB.Text + "UserData\\\"");
+            Console.WriteLine(Application.StartupPath + "\\Junction64.exe");
+            if (isElevated)
             {
-                MessageBox.Show("WARNING! Enabling this option may DELETE all Android user data.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                StartMove(moveUDt.Checked, createLIt.Checked);
+            }
+            else
+            {
+                MaterialMessageBox.Show("Please run as administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void browseBTN_Click(object sender, EventArgs e)
+        private void moveUDt_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (moveUDt.Checked)
+            {
+                MaterialMessageBox.Show("WARNING! Enabling this option may DELETE all Android user data.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void browseBTN_Click_1(object sender, EventArgs e)
         {
             if (openFD.ShowDialog() == DialogResult.OK)
             {
                 toTB.Text = Path.GetFullPath(openFD.SelectedPath + "\\");
             }
+        }
 
+        private void darkmodeSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            var materialSkinManager = MaterialSkinManager.Instance;
+            darkMode = !darkMode;
+            if (darkMode)
+            {
+                materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            }
+            else
+            {
+                materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            }
         }
     }
 }
