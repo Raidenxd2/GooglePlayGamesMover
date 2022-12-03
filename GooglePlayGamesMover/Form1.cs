@@ -69,22 +69,10 @@ namespace GooglePlayGamesMover
             }
             versionText.Text = "v" + ProductVersion;
             Console.WriteLine("" + isElevated);
+            RegistryValueExists("LaunchedApp");
             try
             {
-                if (key.GetValue("LaunchedApp").ToString() == null)
-                {
-                    // do nothing since this is just a detector of if it exists
-                }
-            }
-            catch
-            {
-                // create the key because it doesn't exist
-                Console.WriteLine("First time launching app");
-                key.SetValue("LaunchedApp", null);
-            }
-            try
-            {
-                if (key.GetValue("LaunchedApp").ToString() == null)
+                if (key.GetValue("LaunchedApp").ToString() == "0")
                 {
                     key.SetValue("LaunchedApp", 1);
                     key.SetValue("DarkMode", 1);
@@ -93,7 +81,7 @@ namespace GooglePlayGamesMover
                 else
                 {
                     toTB.Text = key.GetValue("toTB").ToString();
-                    if (key.GetValue("DarkMode").ToString() == "True")
+                    if (key.GetValue("DarkMode") == null)
                     {
                         materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
                     }
@@ -102,6 +90,7 @@ namespace GooglePlayGamesMover
                         materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
                     }
                 }
+                RegistryValueExists("LastLaunchedVersion");
                 if (key.GetValue("LastLaunchedVersion").ToString() != ProductVersion)
                 {
                     WhatsNew whatsNew = new WhatsNew();
@@ -115,6 +104,23 @@ namespace GooglePlayGamesMover
                 MaterialMessageBox.Show(ex.Message + " " + ex.Source + " " + ex.InnerException + " " + ex.StackTrace, "Could not create Registry value (Application data will not be saved).", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
             
+        }
+
+        [SupportedOSPlatform("windows")]
+        private void RegistryValueExists(string keyReg)
+        {
+            try
+            {
+                if (key.GetValue(keyReg).ToString() == null)
+                {
+                    // do nothing since this is just a detector if it exists
+                }
+            }
+            catch (Exception ex)
+            {
+                // create the key because it doesn't exist
+                key.SetValue(keyReg, "0");
+            }
         }
 
         private void StartMove(bool moveUD, bool createLI)
